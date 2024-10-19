@@ -293,6 +293,20 @@ private:
   byte pin_A;
 };
 
+class HelloDrumMUX_4052
+{
+public:
+  HelloDrumMUX_4052(byte pin1, byte pin2, byte pinA);
+  void scan();
+  byte selectPins[2];
+  byte muxNum;
+
+private:
+  byte pin_1;
+  byte pin_2;
+  byte pin_A;
+};
+
 class HelloDrumMUX_4067
 {
 public:

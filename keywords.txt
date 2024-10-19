@@ -5,6 +5,7 @@ HelloDrumButton	KEYWORD1
 HelloDrumButtonLcdShield	KEYWORD1
 HelloDrumKnob	KEYWORD1
 HelloDrumMUX_4051	KEYWORD1
+HelloDrumMUX_4052	KEYWORD1
 HelloDrumMUX_4067	KEYWORD1
 
 singlePiezo	KEYWORD2

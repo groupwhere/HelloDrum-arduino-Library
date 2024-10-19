@@ -93,6 +93,24 @@ HelloDrumMUX_4051::HelloDrumMUX_4051(byte pin1, byte pin2, byte pin3, byte pinA)
   muxIndex++;
 }
 
+//MUX(4052) pin define
+HelloDrumMUX_4052::HelloDrumMUX_4052(byte pin1, byte pin2,  byte pinA) //s0,s1, analogPin
+{
+  pin_1 = pin1;
+  pin_2 = pin2;
+  pin_A = pinA;
+  selectPins[0] = pin_1;
+  selectPins[1] = pin_2;
+
+  for (byte i = 0; i < 2; i++)
+  {
+    pinMode(selectPins[i], OUTPUT);
+    digitalWrite(selectPins[i], HIGH);
+  }
+  muxNum = muxIndex;
+  muxIndex++;
+}
+
 //MUX(4067) pin define
 HelloDrumMUX_4067::HelloDrumMUX_4067(byte pin1, byte pin2, byte pin3, byte pin4, byte pinA) //s0,s1,s2,s3,analogPin
 {
@@ -1182,6 +1200,25 @@ void HelloDrumMUX_4051::scan()
   {
 
     for (byte i = 0; i < 3; i++)
+    {
+      if (pin & (1 << i))
+        digitalWrite(selectPins[i], HIGH);
+      else
+        digitalWrite(selectPins[i], LOW);
+    }
+
+    rawValue[pin] = analogRead(pin_A);
+  }
+}
+
+//4052
+void HelloDrumMUX_4052::scan()
+{
+
+  for (byte pin = muxNum * 8; pin < (muxNum + 1) * 8; pin++)
+  {
+
+    for (byte i = 0; i < 2; i++)
     {
       if (pin & (1 << i))
         digitalWrite(selectPins[i], HIGH);
